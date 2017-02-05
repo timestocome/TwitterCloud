@@ -4,7 +4,6 @@
 # remove unicode, user names, links, hashtags
 
 
-
 ############################################################################
 # setup
 #############################################################################
@@ -33,25 +32,18 @@ for t in tweets_data:
     cleaned_tweets.append(cleaned_tweet)
 
 
-# remove \x??
-removed_unicode =[]
-for t in cleaned_tweets:
-    t = re.sub(r'\\x\w\w', " ", t)
-    removed_unicode.append(t)
-   
-
 
 
 # remove @userName
 # remove links
 # remove hashtags
 cleaned_data = []
-for text in removed_unicode:
+for text in cleaned_tweets:
     new_text = re.sub(r'#\w+ ?', '', text)      # remove hashtags
-    new_text = re.sub(r'http\S+', '', text) # remove links
+    new_text = re.sub(r'http\S+', '', new_text) # remove links
     new_text = re.sub(r'@\S+ ?', '', new_text)  # remove user names
+    new_text = re.sub(r'\\x\w\w', '', new_text) # remove unicode chars
     cleaned_data.append(new_text)
-
 
 
 

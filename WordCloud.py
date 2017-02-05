@@ -1,7 +1,7 @@
 
 # http://github.com/timestocome
-
 # read in any text and convert it to a word cloud
+
 
 # uses https://github.com/amueller/word_cloud library
 
@@ -21,7 +21,7 @@ wordcloud = WordCloud().generate(text)
 
 
 # Display the generated image:
-# the matplotlib way:
+# and save image as *.png
 import matplotlib.pyplot as plt
 plt.imshow(wordcloud)
 plt.axis("off")

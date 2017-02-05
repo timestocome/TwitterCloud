@@ -90,7 +90,7 @@ class Twitter_Api():
 
 
     # will use this to collect, cleanup and store tweets
-    # markov chain will then be built from these instead of Alice
+    # use most common English words as search terms 
     # the, be, to, of, and, a, in, that, have, I, it, for, not, on, with, he, as, you, do, at
     def get_popular(self):
 
