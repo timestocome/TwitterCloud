@@ -14,10 +14,7 @@ from time import sleep
 import logging 
 from random import randint
 
-
-# import other libs 
-# https://github.com/jsvine/markovify
-import markovify                    
+              
 
 # https://github.com/tweepy/tweepy
 import tweepy
