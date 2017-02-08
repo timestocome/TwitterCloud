@@ -32,8 +32,6 @@ for t in tweets_data:
     cleaned_tweets.append(cleaned_tweet)
 
 
-
-
 # remove @userName
 # remove links
 # remove hashtags
@@ -43,6 +41,7 @@ for text in cleaned_tweets:
     new_text = re.sub(r'http\S+', '', new_text) # remove links
     new_text = re.sub(r'@\S+ ?', '', new_text)  # remove user names
     new_text = re.sub(r'\\x\w\w', '', new_text) # remove unicode chars
+    new_text = re.sub(r'&amp', '', new_text)    # remove & code
     cleaned_data.append(new_text)
 
 
