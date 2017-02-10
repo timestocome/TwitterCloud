@@ -29,6 +29,14 @@ from requests_oauthlib import OAuth1Session
 
 
 
+# use today's data
+import datetime
+today = datetime.date.today()
+search_date = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
+
+
+
+
 
 ########################################################################
 # Authorization codes stored in seperate file
@@ -76,6 +84,7 @@ class Twitter_Api():
         self._authorization = auth
 
 
+    
     def tweet(self, tweet):
 
         if self._authorization is None:
@@ -86,7 +95,7 @@ class Twitter_Api():
         stat = api.update_status(tweet)
         self._logger.info("Tweeted: " + tweet)
         self._logger.info(stat)
-
+    
 
 
     # will use this to collect, cleanup and store tweets
@@ -105,10 +114,12 @@ class Twitter_Api():
 
         for w in common_words:
             print("____________ w ", w)
-            tweets = tweepy.Cursor(api.search, q=w, result_type='popular').items()
+            tweets = tweepy.Cursor(api.search, 
+                                    q=w, 
+                                    since=search_date,
+                                    result_type='popular').items()
             for t in tweets:
                 tweet = t.text
-                #print(tweet.encode('utf-8'))
                 new_tweets.append(tweet.encode('utf-8'))    
 
             with open('collected_tweets.txt', 'a') as myfile:
@@ -130,8 +141,32 @@ class Twitter_Api():
 ####################################################################################
 # run code
 ####################################################################################
-
+# fetch stored authorization codes
 twitter_api = Twitter_Api()
 
-# get stream
+# get today's popular tweets
 twitter_api.get_popular()
+
+# run Cleanup_collected_tweets.py
+
+# run WordCloud.py
+
+
+
+
+#############################
+# automate uploading image
+# http://stackoverflow.com/questions/31748444/how-to-update-twitter-status-with-image-using-image-url-in-tweepy
+'''
+def tweet_image(url, message):
+    api = twitter_api()
+    filename = 'temp.jpg'
+    request = requests.get(url, stream=True)
+    if request.status_code == 200:
+        with open(filename, 'wb') as image:
+            for chunk in request:
+                image.write(chunk)
+
+        api.update_with_media(filename, status=message)
+        os.remove(filename)
+'''
