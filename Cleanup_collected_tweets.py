@@ -13,7 +13,22 @@ import string as st
 from itertools import chain
 import re
 
-file_name = 'collected_tweets.txt'
+
+
+# use today's data
+import datetime
+today = datetime.date.today()
+search_date = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
+
+
+
+# use today's date in file name
+clean_file_name = 'cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
+
+# use today's date in file name
+collected_file_name = 'collected_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
+
+
 
 #######################################################################
 # read in saved tweets and clean them up
@@ -21,7 +36,7 @@ file_name = 'collected_tweets.txt'
 def cleanup_tweets():
 
     tweets_data = []
-    with open(file_name, encoding='utf-8') as f:
+    with open(collected_file_name, encoding='utf-8') as f:
         for line in f:
             tweets_data.append(line)
     
@@ -47,7 +62,7 @@ def cleanup_tweets():
 
 
     # write out cleaned up data to disk
-    with open(file_name, 'w') as myfile:
+    with open(clean_file_name, 'w') as myfile:
         for t in cleaned_data:
             myfile.write(str(t)+"\n")
 

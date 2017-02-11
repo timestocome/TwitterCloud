@@ -11,6 +11,11 @@ from os import path
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
+# today's file
+today = datetime.date.today()
+clean_file_name = 'cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
+
+
 
 def generate_current_wordcloud():
 
@@ -21,7 +26,7 @@ def generate_current_wordcloud():
     d = path.dirname(__file__)
 
     # Read the whole text.
-    text = open(path.join(d, 'cleaned_tweets.txt')).read()
+    text = open(path.join(d, clean_file_name)).read()
 
     # Generate a word cloud image
     wordcloud = WordCloud().generate(text)

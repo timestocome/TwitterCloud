@@ -36,6 +36,10 @@ search_date = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
 
 
 
+# use today's date in file name
+collected_file_name = 'collected_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
+
+
 
 
 ########################################################################
@@ -122,7 +126,7 @@ class Twitter_Api():
                 tweet = t.text
                 new_tweets.append(tweet.encode('utf-8'))    
 
-            with open('collected_tweets.txt', 'a') as myfile:
+            with open(collected_file_name, 'a') as myfile:
                 for t in new_tweets:
                     myfile.write(str(t)+"\n")
             sleep(60)
