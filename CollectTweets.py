@@ -29,7 +29,7 @@ from requests_oauthlib import OAuth1Session
 
 
 
-# use today's data
+# use today's date for filenames and days since...
 import datetime
 today = datetime.date.today()
 search_date = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
@@ -103,8 +103,6 @@ class Twitter_Api():
     # http://stackoverflow.com/questions/31748444/how-to-update-twitter-status-with-image-using-image-url-in-tweepy
     def tweet_image(self, image_name, message):
 
-        print (image_name, message)
-
         if self._authorization is None:
             self._login()
             pass
@@ -113,7 +111,7 @@ class Twitter_Api():
 
         file = open(image_name, 'rb')
         data = file.read()
-       # api.update_with_media(filename=image_name, status=message)
+        api.update_with_media(filename=image_name, status=message)
         
 
     # will use this to collect, cleanup and store tweets
@@ -163,12 +161,12 @@ class Twitter_Api():
 twitter_api = Twitter_Api()
 
 # get today's popular tweets
-#twitter_api.get_popular()
+twitter_api.get_popular()
 
 
 # clean up the tweets
-#from Cleanup_collected_tweets import cleanup_tweets
-#cleanup_tweets()
+from Cleanup_collected_tweets import cleanup_tweets
+cleanup_tweets()
 
 
 # create word cloud
