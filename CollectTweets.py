@@ -34,8 +34,6 @@ import datetime
 today = datetime.date.today()
 search_date = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
 
-
-
 # use today's date in file name
 collected_file_name = 'collected_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
 
@@ -100,7 +98,23 @@ class Twitter_Api():
         self._logger.info("Tweeted: " + tweet)
         self._logger.info(stat)
     
+    
+    # automate uploading image
+    # http://stackoverflow.com/questions/31748444/how-to-update-twitter-status-with-image-using-image-url-in-tweepy
+    def tweet_image(self, image_name, message):
 
+        print (image_name, message)
+
+        if self._authorization is None:
+            self._login()
+            pass
+
+        api = tweepy.API(self._authorization)
+
+        file = open(image_name, 'rb')
+        data = file.read()
+       # api.update_with_media(filename=image_name, status=message)
+        
 
     # will use this to collect, cleanup and store tweets
     # use most common English words as search terms 
@@ -149,28 +163,24 @@ class Twitter_Api():
 twitter_api = Twitter_Api()
 
 # get today's popular tweets
-twitter_api.get_popular()
-
-# run Cleanup_collected_tweets.py
-
-# run WordCloud.py
+#twitter_api.get_popular()
 
 
+# clean up the tweets
+#from Cleanup_collected_tweets import cleanup_tweets
+#cleanup_tweets()
 
 
-#############################
-# automate uploading image
-# http://stackoverflow.com/questions/31748444/how-to-update-twitter-status-with-image-using-image-url-in-tweepy
-'''
-def tweet_image(url, message):
-    api = twitter_api()
-    filename = 'temp.jpg'
-    request = requests.get(url, stream=True)
-    if request.status_code == 200:
-        with open(filename, 'wb') as image:
-            for chunk in request:
-                image.write(chunk)
+# create word cloud
+from WordCloud import generate_current_wordcloud
+filename = generate_current_wordcloud()
 
-        api.update_with_media(filename, status=message)
-        os.remove(filename)
-'''
+
+# post word cloud image to twitter stream
+inaugurationDay = datetime.date(2017, 1, 19)  # add one day
+days_since = today - inaugurationDay
+split_days_since = str(days_since).split(',')
+message = split_days_since[0]
+
+twitter_api.tweet_image(filename, message)
+
