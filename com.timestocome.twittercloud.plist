@@ -7,8 +7,8 @@
 
   <key>ProgramArguments</key>
   <array>
-    <string>/Users/ljcobb/anaconda/bin/python</string>
-    <string>/Users/ljcobb/backgroundPrograms/TwitterCloud/CollectAndProcessTweets.py</string>
+    <string>/Users/your_home_dir/anaconda/bin/python</string>
+    <string>/Users/your_home_dir/backgroundPrograms/TwitterCloud/CollectAndProcessTweets.py</string>
   </array>
 
   <key>Nice</key>
@@ -26,9 +26,9 @@
   <true/>
 
   <key>StandardErrorPath</key>
-  <string>/Users/ljcobb/backgroundPrograms/TwitterCloud/TwitterBot.err</string>
+  <string>/Users/your_home_dir/backgroundPrograms/TwitterCloud/TwitterBot.err</string>
 
   <key>StandardOutPath</key>
-  <string>/Users/ljcobb/backgroundPrograms/TwitterCloud/TwitterBot.out</string>
+  <string>/Users/your_home_dir/backgroundPrograms/TwitterCloud/TwitterBot.out</string>
 </dict>
 </plist>
