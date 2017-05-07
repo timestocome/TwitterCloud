@@ -1,4 +1,5 @@
-# http://github.com/timestocome
+#!/Users/ljcobb/anaconda/bin/python
+
 
 # http://github.com/timestocome/
 # build a markov chain and use it to predict Alice In Wonderland/Through the Looking Glass text
@@ -8,9 +9,12 @@ import numpy as np
 import random
 from collections import Counter
 import datetime
+import os
 
 import markovify  # https://github.com/jsvine/markovify
 
+
+path = os.path.dirname(os.path.realpath(__file__))
 
 #######################################################################
 # read in text and break into words and sentences
@@ -23,7 +27,8 @@ def markov_tweet():
 
     # get the filename of cleaned tweets for today
     today = datetime.date.today()
-    filename = 'cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
+    filename = path + '/cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
+
 
 
     # Read the whole text.

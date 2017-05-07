@@ -1,3 +1,4 @@
+#!/Users/ljcobb/anaconda/bin/python
      
 # http://github.com/timestocome
 
@@ -13,7 +14,7 @@ import time
 from time import sleep
 import logging 
 from random import randint
-
+import os
               
 
 # https://github.com/tweepy/tweepy
@@ -28,6 +29,7 @@ import requests
 from requests_oauthlib import OAuth1Session 
 
 
+path = os.path.dirname(os.path.realpath(__file__))
 
 # use today's date for filenames and days since...
 import datetime
@@ -35,7 +37,7 @@ today = datetime.date.today()
 search_date = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
 
 # use today's date in file name
-collected_file_name = 'collected_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
+collected_file_name = path + '/collected_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
 
 
 
@@ -161,7 +163,8 @@ class Twitter_Api():
 # fetch stored authorization codes
 twitter_api = Twitter_Api()
 
-'''
+
+
 # get today's popular tweets
 twitter_api.get_popular()
 
@@ -169,7 +172,7 @@ twitter_api.get_popular()
 # clean up the tweets
 from Cleanup_collected_tweets import cleanup_tweets
 cleanup_tweets()
-'''
+
 
 # create word cloud
 from WordCloud import generate_current_wordcloud

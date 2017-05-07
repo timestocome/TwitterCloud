@@ -1,3 +1,6 @@
+#!/Users/ljcobb/anaconda/bin/python
+
+
 
 # http://github.com/timestocome
 # read in any text and convert it to a word cloud
@@ -7,13 +10,17 @@
 
 
 import datetime
-from os import path
+import os
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
+
+path = os.path.dirname(os.path.realpath(__file__))
+
+
 # today's file
 today = datetime.date.today()
-clean_file_name = 'cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
+clean_file_name = path + '/cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
 
 
 
@@ -23,10 +30,9 @@ def generate_current_wordcloud():
     today = datetime.date.today()
     image_name = 'tweetcloud_' + str(today.month) + '_' + str(today.day) + '.png'
    
-    d = path.dirname(__file__)
 
     # Read the whole text.
-    text = open(path.join(d, clean_file_name)).read()
+    text = open(clean_file_name).read()
 
     # Generate a word cloud image
     wordcloud = WordCloud().generate(text)
@@ -35,10 +41,11 @@ def generate_current_wordcloud():
     # and save image as *.png
     plt.imshow(wordcloud)
     plt.axis("off")
-    plt.savefig(image_name)
+    full_path = path + "/" + image_name
+    plt.savefig(full_path)
    # plt.show()
 
     return image_name
 
 #####################################################
-generate_current_wordcloud()
+#generate_current_wordcloud()

@@ -1,3 +1,5 @@
+#!/Users/ljcobb/anaconda/bin/python
+
 # http://github.com/timestocome
 
 # read in tweets that were written to a disk file and clean them up
@@ -13,6 +15,9 @@ import string as st
 from itertools import chain
 import re
 
+import os
+
+path = os.path.dirname(os.path.realpath(__file__))
 
 
 # use today's data
@@ -23,10 +28,10 @@ search_date = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
 
 
 # use today's date in file name
-clean_file_name = 'cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
+clean_file_name = path + '/cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
 
 # use today's date in file name
-collected_file_name = 'collected_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
+collected_file_name = path + '/collected_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
 
 
 
