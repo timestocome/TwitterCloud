@@ -68,4 +68,4 @@ def cleanup_tweets():
 
 
 #########################################################
-cleanup_tweets()
+#cleanup_tweets()
