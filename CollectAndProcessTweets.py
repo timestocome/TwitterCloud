@@ -177,7 +177,7 @@ cleanup_tweets()
 # create word cloud
 from WordCloud import generate_current_wordcloud
 filename = generate_current_wordcloud()
-
+image_location = path + '/' + filename
 
 # post word cloud image to twitter stream
 #inaugurationDay = datetime.date(2017, 1, 19)  # add one day
@@ -189,5 +189,5 @@ filename = generate_current_wordcloud()
 from TwitterMarkov import markov_tweet
 message = markov_tweet()
 
-twitter_api.tweet_image(filename, message)
+twitter_api.tweet_image(image_location, message)
 
