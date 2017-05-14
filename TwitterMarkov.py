@@ -14,7 +14,6 @@ import os
 import markovify  # https://github.com/jsvine/markovify
 
 
-path = os.path.dirname(os.path.realpath(__file__))
 
 #######################################################################
 # read in text and break into words and sentences
@@ -23,16 +22,11 @@ path = os.path.dirname(os.path.realpath(__file__))
 
 
 
-def markov_tweet():
-
-    # get the filename of cleaned tweets for today
-    today = datetime.date.today()
-    filename = path + '/cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
-
+def markov_tweet(clean_file_name):
 
 
     # Read the whole text.
-    data = open(filename).read()
+    data = open(clean_file_name).read()
 
 
     # create markov model

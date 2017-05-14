@@ -17,28 +17,11 @@ import re
 
 import os
 
-path = os.path.dirname(os.path.realpath(__file__))
-
-
-# use today's data
-import datetime
-today = datetime.date.today()
-search_date = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
-
-
-
-# use today's date in file name
-clean_file_name = path + '/cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
-
-# use today's date in file name
-collected_file_name = path + '/collected_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
-
-
 
 #######################################################################
 # read in saved tweets and clean them up
 #######################################################################
-def cleanup_tweets():
+def cleanup_tweets(collected_file_name, clean_file_name):
 
     tweets_data = []
     with open(collected_file_name, encoding='utf-8') as f:

@@ -34,12 +34,17 @@ path = os.path.dirname(os.path.realpath(__file__))
 # use today's date for filenames and days since...
 import datetime
 today = datetime.date.today()
+hour = time.strftime("%H")
 search_date = str(today.year) + '-' + str(today.month) + '-' + str(today.day)
 
 # use today's date in file name
-collected_file_name = path + '/collected_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
+collected_file_name = path + '/collected_tweets_' + str(today.month) + '_' + str(today.day) + '_' + hour + '.txt'
+clean_file_name = path + '/cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '_' + hour + '.txt'
+image_file_name =  path + 'tweetcloud_' + str(today.month) + '_' + str(today.day) + '_' + hour + '.png'
 
-
+print("Collected", collected_file_name)
+print("Clean", clean_file_name)
+print("Image", image_file_name)
 
 
 ########################################################################
@@ -171,13 +176,15 @@ twitter_api.get_popular()
 
 # clean up the tweets
 from Cleanup_collected_tweets import cleanup_tweets
-cleanup_tweets()
+cleanup_tweets(collected_file_name, clean_file_name)
 
 
 # create word cloud
 from WordCloud import generate_current_wordcloud
-filename = generate_current_wordcloud()
-image_location = path + '/' + filename
+generate_current_wordcloud(clean_file_name, image_file_name)
+
+#filename = generate_current_wordcloud()
+#image_location = path + '/' + filename
 
 # post word cloud image to twitter stream
 #inaugurationDay = datetime.date(2017, 1, 19)  # add one day
@@ -187,7 +194,7 @@ image_location = path + '/' + filename
 
 # create text for word cloud
 from TwitterMarkov import markov_tweet
-message = markov_tweet()
+message = markov_tweet(clean_file_name)
 
-twitter_api.tweet_image(image_location, message)
+twitter_api.tweet_image(image_file_name, message)
 

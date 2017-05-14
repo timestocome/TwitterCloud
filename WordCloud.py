@@ -10,26 +10,15 @@
 
 
 import datetime
+import time
 import os
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
 
-path = os.path.dirname(os.path.realpath(__file__))
 
 
-# today's file
-today = datetime.date.today()
-clean_file_name = path + '/cleaned_tweets_' + str(today.month) + '_' + str(today.day) + '.txt'
-
-
-
-def generate_current_wordcloud():
-
-    # use today's date in image name
-    today = datetime.date.today()
-    image_name = 'tweetcloud_' + str(today.month) + '_' + str(today.day) + '.png'
-   
+def generate_current_wordcloud(clean_file_name, image_name):
 
     # Read the whole text.
     text = open(clean_file_name).read()
@@ -41,11 +30,5 @@ def generate_current_wordcloud():
     # and save image as *.png
     plt.imshow(wordcloud)
     plt.axis("off")
-    full_path = path + "/" + image_name
-    plt.savefig(full_path)
-   # plt.show()
-
-    return image_name
-
-#####################################################
-#generate_current_wordcloud()
+    plt.savefig(image_name)
+  
