@@ -5,3 +5,4 @@ Long term goal is to identify trends in the data
 
 https://twitter.com/trend__seeker
 
+<img src="https://github.com/timestocome/TwitterCloud/blob/master/bot.jpg">
